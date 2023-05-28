@@ -1,0 +1,64 @@
+<form class="card" [formGroup]="form" (ngSubmit)="submit()">
+  <h2>Зарегистрироваться как юр. лицо</h2>
+
+  <div class="alert alert-danger" *ngIf="auth.error$ | async as error">
+    {{ error }}
+  </div>
+
+  <div class="alert alert-info" *ngIf="message">
+    {{ message }}
+  </div>
+
+  <mat-form-field class="full-width" appearance="fill">
+    <mat-label>Email</mat-label>
+    <input matInput formControlName="email" />
+  </mat-form-field>
+
+  <div *ngIf="form.get('email')?.touched && form.get('email')?.invalid">
+    <small *ngIf="(form.get('email')?.errors)!['required']"
+      >обязательное поле</small
+    >
+    <small *ngIf="(form.get('email')?.errors)!['email']"
+      >не валидный email</small
+    >
+  </div>
+
+  <mat-form-field class="full-width" appearance="fill">
+    <mat-label>Password</mat-label>
+    <input matInput type="password" formControlName="password" />
+  </mat-form-field>
+
+  <div *ngIf="form.get('password')?.touched && form.get('password')?.invalid">
+    <small *ngIf="(form.get('password')?.errors)!['required']"
+      >обязательное поле</small
+    >
+    <small *ngIf="(form.get('password')?.errors)!['minlength']">
+      минимальная длина
+      {{
+        (form.get("password")?.errors)!["minlength"]["requiredLength"]
+      }}
+      текущая длина
+      {{ (form.get("password")?.errors)!["minlength"]["actualLength"] }}
+    </small>
+  </div>
+
+  <mat-form-field class="full-width" appearance="fill">
+    <mat-label>Адрес</mat-label>
+    <input matInput formControlName="address" />
+  </mat-form-field>
+
+  <div *ngIf="form.get('address')?.touched && form.get('address')?.invalid">
+    <small *ngIf="(form.get('address')?.errors)!['address']"
+      >обязательное поле</small
+    >
+  </div>
+
+  <button
+    mat-raised-button
+    color="primary"
+    [disabled]="form.invalid || submitted"
+    type="submit"
+  >
+    Login
+  </button>
+</form>

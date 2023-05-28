@@ -1,0 +1,84 @@
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <h1>Изменить продукт</h1>
+
+  <mat-form-field class="full-width" appearance="fill">
+    <mat-label>Название</mat-label>
+    <input matInput formControlName="name" />
+  </mat-form-field>
+
+  <mat-form-field class="full-width" appearance="fill">
+    <mat-label>Описание</mat-label>
+    <input matInput formControlName="description" />
+  </mat-form-field>
+
+  <div class="one-line">
+    <mat-form-field class="full-width" appearance="fill">
+      <mat-label>Цена</mat-label>
+      <input matInput type="number" min="1" formControlName="price" />
+    </mat-form-field>
+
+    <mat-form-field class="full-width" appearance="fill">
+      <mat-label>Цена производителя</mat-label>
+      <input
+        matInput
+        type="number"
+        min="1"
+        formControlName="manufacturer_price"
+      />
+    </mat-form-field>
+
+    <mat-form-field class="full-width" appearance="fill">
+      <mat-label>коэффициент стоимость доставки</mat-label>
+      <input
+        matInput
+        type="number"
+        min="1"
+        formControlName="shipping_cost_coefficient"
+      />
+    </mat-form-field>
+  </div>
+
+  <div class="one-line">
+    <mat-form-field class="full-width" appearance="fill">
+      <mat-label>Категория</mat-label>
+      <mat-select formControlName="category">
+        <mat-option *ngFor="let category of categories" [value]="category.id">
+          {{ category.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="full-width" appearance="fill">
+      <mat-label>Производитель</mat-label>
+      <mat-select formControlName="manufacturer">
+        <mat-option
+          *ngFor="let manufacturer of manufacturers"
+          [value]="manufacturer.id"
+        >
+          {{ manufacturer.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="full-width" appearance="fill">
+      <mat-label>Еденица измерения</mat-label>
+      <mat-select formControlName="unit_of_measurement">
+        <mat-option
+          *ngFor="let unit_of_measurement of units_of_measurement"
+          [value]="unit_of_measurement.id"
+        >
+          {{ unit_of_measurement.unit }} - {{ unit_of_measurement.description }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <button
+    mat-raised-button
+    color="primary"
+    [disabled]="form.invalid"
+    type="submit"
+  >
+    Сохронить
+  </button>
+</form>

@@ -1,0 +1,17 @@
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <h1>Изменить пользователя</h1>
+
+  <mat-form-field class="full-width" appearance="fill">
+    <mat-label>address</mat-label>
+    <input matInput formControlName="address" />
+  </mat-form-field>
+
+  <button
+    mat-raised-button
+    color="primary"
+    [disabled]="form.invalid"
+    type="submit"
+  >
+    Сохронить
+  </button>
+</form>

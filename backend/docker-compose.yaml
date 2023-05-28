@@ -1,0 +1,48 @@
+version: "3.8"
+
+services:
+
+  web:
+    container_name: trade_system_fastapi
+    build: ./
+    command: uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+    volumes:
+      - ./:/usr/src/app
+    ports:
+      - 8004:8000
+    depends_on:
+      - db
+      - test_db
+  
+  db:
+    container_name: trade_system_postgresql_db
+    image: postgres
+    restart: always
+    ports:
+      - 5433:5432
+    environment:
+      - POSTGRES_USER=${DATABASE_USERNAME}
+      - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
+      - POSTGRES_DB=${DATABASE_NAME}
+
+  test_db:
+    container_name: trade_system_test_postgresql_db
+    image: postgres
+    restart: always
+    ports:
+      - 5434:5432
+    environment:
+      - POSTGRES_USER=${DATABASE_USERNAME}
+      - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
+      - POSTGRES_DB=${DATABASE_NAME}
+
+  pgadmin:
+    container_name: trade_system_pgadmin
+    image: dpage/pgadmin4
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=${PGADMIN_EMAIL}
+      - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_PASSWORD}
+    ports:
+      - 5050:80
+    depends_on:
+      - db

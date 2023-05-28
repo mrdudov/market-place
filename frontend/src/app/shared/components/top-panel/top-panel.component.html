@@ -1,0 +1,32 @@
+<mat-toolbar color="primary">
+  <span class="pointer" [routerLink]="['/']">Trade System</span>
+
+  <span class="spacer"></span>
+
+  <span *ngIf="auth.isAuthenticated(); else loginT">
+    <button mat-button [routerLink]="['/users', 'profile']">
+      {{ user_profile.email }}
+    </button>
+    <button mat-button (click)="logout($event)">Выйти</button>
+    <button mat-button [routerLink]="['/admin']">Админ панель</button>
+    <button mat-icon-button [routerLink]="['/shopping-cart']">
+      <mat-icon
+        matBadge="{{ shoppingCartService.getProductsCount() }}"
+        matBadgeColor="warn"
+        >shopping_cart</mat-icon
+      >
+    </button>
+  </span>
+
+  <ng-template #loginT>
+    <span>
+      <button mat-button (click)="login($event)">Войти</button>
+    </span>
+
+    <span>
+      <button mat-button [routerLink]="['/users', 'register']">
+        Зарегестрироваться
+      </button>
+    </span>
+  </ng-template>
+</mat-toolbar>

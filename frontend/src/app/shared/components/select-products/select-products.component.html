@@ -1,0 +1,101 @@
+<h2 mat-dialog-title>Выбрать продукт</h2>
+<mat-dialog-content>
+  <div class="one-line">
+    <app-category-selector
+      (changeCateyory)="changeCateyory($event)"
+    ></app-category-selector>
+    <app-manufacturer-selector
+      (changeManufacturer)="changeManufacturer($event)"
+    ></app-manufacturer-selector>
+  </div>
+
+  <mat-form-field appearance="standard">
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" #input />
+  </mat-form-field>
+
+  <div>
+    <table mat-table [dataSource]="dataSource">
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Название</th>
+        <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef>Описание</th>
+        <td mat-cell *matCellDef="let element">{{ element.description }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="price">
+        <th mat-header-cell *matHeaderCellDef>Цена</th>
+        <td mat-cell *matCellDef="let element">{{ element.price }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="manufacturer_price">
+        <th mat-header-cell *matHeaderCellDef>Цена производителя</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.manufacturer_price }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="shipping_cost_coefficient">
+        <th mat-header-cell *matHeaderCellDef>
+          коэффициент стоимость доставки
+        </th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.shipping_cost_coefficient }}
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr
+        mat-row
+        (click)="row_click(row)"
+        *matRowDef="let row; columns: displayedColumns"
+      ></tr>
+
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="5">Нет соответствующих продуктов.</td>
+      </tr>
+    </table>
+
+    <mat-paginator
+      [pageSizeOptions]="[5, 10, 20]"
+      aria-label="Select page of users"
+    ></mat-paginator>
+  </div>
+
+  <div class="m1rem" *ngIf="selected_product; else product_not_selected">
+    <h3>Выбранный продукт:</h3>
+    <p>Название {{ selected_product.name }}</p>
+  </div>
+  <ng-template #product_not_selected>
+    <div class="m1rem">
+      <h3>Выберите продукт</h3>
+    </div>
+  </ng-template>
+
+  <mat-form-field class="full-width" appearance="fill">
+    <mat-label>количество</mat-label>
+    <input
+      #product_count_el
+      matInput
+      type="number"
+      min="1"
+      placeholder="количество"
+      value="1"
+    />
+  </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-raised-button color="primary" (click)="onCancle()">Отмена</button>
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="onClose(product_count_el)"
+    cdkFocusInitial
+  >
+    Добавить
+  </button>
+</mat-dialog-actions>

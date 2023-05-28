@@ -1,0 +1,35 @@
+:host {
+  display: block;
+  margin: 1rem;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+table {
+  width: 800px;
+}
+
+tr:hover {
+  background: whitesmoke;
+  cursor: pointer;
+}
+
+.selected-product {
+  margin: 1rem;
+  margin-top: 2rem;
+}
+
+.one-line {
+  display: flex;
+}
+
+.mt1rem {
+  margin-top: 1rem;
+}
+
+.ml1rem {
+  margin-left: 1rem;
+}

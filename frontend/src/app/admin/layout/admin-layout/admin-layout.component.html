@@ -1,0 +1,19 @@
+<app-top-panel></app-top-panel>
+
+<div class="h100p" *ngIf="auth.isAuthenticated(); else loginContainerTemplate">
+  <mat-sidenav-container class="sidenav-container">
+    <mat-sidenav opened class="sidenav" mode="side">
+      <app-admin-page-side-navbar></app-admin-page-side-navbar>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
+
+<ng-template #loginContainerTemplate>
+  <div class="login-container-template">
+    <router-outlet></router-outlet>
+  </div>
+</ng-template>

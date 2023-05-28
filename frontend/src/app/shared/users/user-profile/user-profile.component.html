@@ -1,0 +1,30 @@
+<h2>Профиль пользователя</h2>
+<button
+  mat-raised-button
+  color="primary"
+  class="mb1rem"
+  [routerLink]="['/orders']"
+>
+  Список заказов
+</button>
+<p>ID: {{ user_profile.id }}</p>
+<p>почта: {{ user_profile.email }}</p>
+<p>роль: {{ user_profile.user_role }}</p>
+<p>адрес: {{ user_profile.address }}</p>
+<p>дата регистрации: {{ user_profile.created_at | date }}</p>
+
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <mat-form-field class="full-width" appearance="fill">
+    <mat-label>Адрес</mat-label>
+    <input matInput formControlName="address" />
+  </mat-form-field>
+
+  <button
+    mat-raised-button
+    color="primary"
+    [disabled]="form.invalid"
+    type="submit"
+  >
+    Сохронить
+  </button>
+</form>

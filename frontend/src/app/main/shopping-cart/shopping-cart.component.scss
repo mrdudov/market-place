@@ -1,0 +1,33 @@
+:host {
+  margin: 1rem auto;
+  width: 850px;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+tr:hover {
+  background: whitesmoke;
+  cursor: pointer;
+}
+
+.selected-product {
+  margin: 1rem;
+  margin-top: 2rem;
+}
+
+.one-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mt1rem {
+  margin-top: 1rem;
+}
+
+.ml1rem {
+  margin-left: 1rem;
+}

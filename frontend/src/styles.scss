@@ -1,0 +1,23 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto");
+@import "~quill/dist/quill.core.css";
+@import "~quill/dist/quill.snow.css";
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-size: 1rem;
+}
+
+table {
+  width: 100%;
+}

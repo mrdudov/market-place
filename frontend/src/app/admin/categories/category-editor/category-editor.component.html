@@ -1,0 +1,26 @@
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <h1>Изменить категорию</h1>
+
+  <mat-form-field class="full-width" appearance="fill">
+    <mat-label>Название</mat-label>
+    <input matInput formControlName="name" />
+  </mat-form-field>
+
+  <mat-form-field class="full-width" appearance="fill">
+    <mat-label>Описание</mat-label>
+    <input matInput formControlName="description" />
+  </mat-form-field>
+
+  <mat-checkbox class="display-block" formControlName="is_active"
+    >is active</mat-checkbox
+  >
+
+  <button
+    mat-raised-button
+    color="primary"
+    [disabled]="form.invalid"
+    type="submit"
+  >
+    Сохронить
+  </button>
+</form>

@@ -1,0 +1,17 @@
+<h2 mat-dialog-title>Добавить в корзину</h2>
+<mat-dialog-content>
+  <p>Продукт {{ product?.name }}</p>
+  <p>Описание {{ product?.description }}</p>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Количество</mat-label>
+    <input matInput type="number" min="1" [(ngModel)]="count" />
+  </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-raised-button (click)="onCancle()" color="primary">Отмена</button>
+  <button mat-raised-button (click)="onAdd()" color="primary" cdkFocusInitial>
+    Добавить
+  </button>
+</mat-dialog-actions>

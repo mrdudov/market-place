@@ -1,0 +1,15 @@
+<mat-form-field appearance="fill">
+  <mat-label> Производители</mat-label>
+  <mat-select
+    [(value)]="selected_manufacturer_id"
+    (valueChange)="changeManufacturer.emit($event)"
+  >
+    <mat-option [value]="0"> Продукты всех производителей </mat-option>
+    <mat-option
+      *ngFor="let manufacturer of manufacturers"
+      [value]="manufacturer.id"
+    >
+      {{ manufacturer.name }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>

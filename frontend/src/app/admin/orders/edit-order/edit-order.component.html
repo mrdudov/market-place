@@ -1,0 +1,130 @@
+<h2>Номер заказа: {{ order?.id }}</h2>
+
+<form [formGroup]="form" (ngSubmit)="submit()" (change)="form_change()">
+  <div class="one-line">
+    <mat-form-field class="full-width" appearance="fill">
+      <mat-label>Стоимость доставки</mat-label>
+      <input matInput type="number" min="1" formControlName="price" />
+    </mat-form-field>
+
+    <mat-form-field class="full-width" appearance="fill">
+      <mat-label>Дальность доставки</mat-label>
+      <input matInput type="number" min="1" formControlName="distance" />
+    </mat-form-field>
+
+    <mat-form-field class="full-width" appearance="fill">
+      <mat-label>статус заказа</mat-label>
+      <mat-select
+        formControlName="order_status"
+        (selectionChange)="form_change()"
+      >
+        <mat-option *ngFor="let status of orderStatusKeys" [value]="status">
+          {{ status }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+</form>
+
+<mat-form-field appearance="standard">
+  <mat-label>Filter</mat-label>
+  <input matInput (keyup)="applyFilter($event)" #input />
+</mat-form-field>
+
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource">
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef>ID</th>
+      <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>продукт</th>
+      <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef>описание</th>
+      <td mat-cell *matCellDef="let element">{{ element.description }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="price">
+      <th mat-header-cell *matHeaderCellDef>цена</th>
+      <td mat-cell *matCellDef="let element">{{ element.price }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="count">
+      <th mat-header-cell *matHeaderCellDef>Кол-во</th>
+      <td mat-cell *matCellDef="let element">{{ element.product_count }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>удалить</th>
+      <td mat-cell *matCellDef="let element">
+        <button
+          mat-icon-button
+          (click)="delete_product(element.id)"
+          color="warn"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr
+      mat-row
+      (click)="select_product(row)"
+      *matRowDef="let row; columns: displayedColumns"
+    ></tr>
+
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="6">Нет добавленных продуктов</td>
+    </tr>
+  </table>
+
+  <mat-paginator
+    [pageSizeOptions]="[5, 10, 20]"
+    aria-label="Select page of users"
+  ></mat-paginator>
+</div>
+
+<button
+  mat-raised-button
+  color="primary"
+  class="mt1rem"
+  (click)="add_product()"
+>
+  Добавить продукт
+</button>
+<button
+  mat-raised-button
+  color="primary"
+  class="mt1rem ml1rem"
+  (click)="get_distance()"
+>
+  Построить маршрут
+</button>
+
+<div *ngIf="selected_product" class="selected-product">
+  <p>Продукт: {{ selected_product.name }}</p>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Кол-во</mat-label>
+    <input
+      matInput
+      #product_count
+      type="number"
+      min="1"
+      [value]="selected_product.product_count"
+    />
+  </mat-form-field>
+
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="edit_product(product_count)"
+  >
+    Сохронить
+  </button>
+</div>

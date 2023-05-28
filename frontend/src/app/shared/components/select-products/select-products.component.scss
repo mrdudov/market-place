@@ -1,0 +1,36 @@
+:host {
+  display: block;
+  width: 700px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+table {
+  margin-bottom: 1rem;
+}
+
+tr:hover {
+  background: whitesmoke;
+}
+
+.m1rem {
+  margin: 1rem;
+}
+
+.one-line {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+app-category-selector,
+app-manufacturer-selector {
+  flex-grow: 1;
+}

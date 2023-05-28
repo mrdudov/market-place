@@ -1,0 +1,46 @@
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <h1>Создать производителя</h1>
+
+  <div
+    [ngClass]="{
+      invalid: form.get('name')?.touched && form.get('name')?.invalid
+    }"
+  >
+    <mat-form-field appearance="fill">
+      <mat-label>Название производителя</mat-label>
+      <input matInput formControlName="name" />
+    </mat-form-field>
+  </div>
+
+  <div
+    [ngClass]="{
+      invalid:
+        form.get('description')?.touched && form.get('description')?.invalid
+    }"
+  >
+    <mat-form-field appearance="fill">
+      <mat-label>Описание производителя</mat-label>
+      <input matInput formControlName="description" />
+    </mat-form-field>
+  </div>
+
+  <div
+    [ngClass]="{
+      invalid: form.get('address')?.touched && form.get('address')?.invalid
+    }"
+  >
+    <mat-form-field appearance="fill">
+      <mat-label>Адрес производителя</mat-label>
+      <input matInput formControlName="address" />
+    </mat-form-field>
+  </div>
+
+  <button
+    mat-raised-button
+    color="primary"
+    [disabled]="form.invalid"
+    type="submit"
+  >
+    Создать
+  </button>
+</form>

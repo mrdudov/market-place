@@ -1,0 +1,121 @@
+<h2>Список продуктов</h2>
+
+<div class="one-line">
+  <mat-form-field appearance="fill">
+    <mat-label>Категория</mat-label>
+    <mat-select
+      [(value)]="selected_category_id"
+      (valueChange)="change_category($event)"
+    >
+      <mat-option [value]="0"> Продукты из всех категорий </mat-option>
+      <mat-option *ngFor="let category of categories" [value]="category.id">
+        {{ category.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label> Производители</mat-label>
+    <mat-select
+      [(value)]="selected_manufacturer_id"
+      (valueChange)="change_manufacturer($event)"
+    >
+      <mat-option [value]="0"> Продукты всех производителей </mat-option>
+      <mat-option
+        *ngFor="let manufacturer of manufacturers"
+        [value]="manufacturer.id"
+      >
+        {{ manufacturer.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+
+<button
+  mat-raised-button
+  color="primary"
+  [routerLink]="['/admin', 'create-product']"
+>
+  Добавить продукт
+</button>
+
+<mat-form-field appearance="standard">
+  <mat-label>Filter</mat-label>
+  <input matInput (keyup)="applyFilter($event)" #input />
+</mat-form-field>
+
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource">
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef>ID</th>
+      <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Товар</th>
+      <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef>Описание категории</th>
+      <td mat-cell *matCellDef="let element">{{ element.description }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="price">
+      <th mat-header-cell *matHeaderCellDef>Цена</th>
+      <td mat-cell *matCellDef="let element">{{ element.price }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="manufacturer_price">
+      <th mat-header-cell *matHeaderCellDef>Цена производителя</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.manufacturer_price }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="shipping_cost_coefficient">
+      <th mat-header-cell *matHeaderCellDef>коэффициент стоимость доставки</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.shipping_cost_coefficient }}
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+    <ng-container matColumnDef="delete">
+      <th mat-header-cell *matHeaderCellDef>удалить</th>
+      <td mat-cell *matCellDef="let element">
+        <button
+          mat-icon-button
+          (click)="delete_product(element.id)"
+          color="warn"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="edit">
+      <th mat-header-cell *matHeaderCellDef>Редактировать</th>
+      <td mat-cell *matCellDef="let element">
+        <button
+          mat-icon-button
+          [routerLink]="['/admin', 'edit-product', element.id]"
+          color="primary"
+        >
+          <mat-icon>edit</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="8">Нет данных</td>
+    </tr>
+  </table>
+
+  <mat-paginator
+    [pageSizeOptions]="[5, 10, 20]"
+    aria-label="Select page of users"
+  ></mat-paginator>
+</div>

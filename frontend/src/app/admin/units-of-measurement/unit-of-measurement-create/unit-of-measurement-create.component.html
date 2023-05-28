@@ -1,0 +1,35 @@
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <h1>Добавить единицу измерения</h1>
+
+  <div
+    [ngClass]="{
+      invalid: form.get('unit')?.touched && form.get('unit')?.invalid
+    }"
+  >
+    <mat-form-field appearance="fill">
+      <mat-label>Единица измерения</mat-label>
+      <input matInput formControlName="unit" />
+    </mat-form-field>
+  </div>
+
+  <div
+    [ngClass]="{
+      invalid:
+        form.get('description')?.touched && form.get('description')?.invalid
+    }"
+  >
+    <mat-form-field appearance="fill">
+      <mat-label>Описание единицы измерения</mat-label>
+      <input matInput formControlName="description" />
+    </mat-form-field>
+  </div>
+
+  <button
+    mat-raised-button
+    color="primary"
+    [disabled]="form.invalid"
+    type="submit"
+  >
+    Создать
+  </button>
+</form>

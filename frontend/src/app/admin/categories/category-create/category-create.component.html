@@ -1,0 +1,39 @@
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <h1>Создать категорию</h1>
+
+  <div
+    [ngClass]="{
+      invalid: form.get('name')?.touched && form.get('name')?.invalid
+    }"
+  >
+    <mat-form-field appearance="fill">
+      <mat-label>Название категории</mat-label>
+      <input matInput formControlName="name" />
+    </mat-form-field>
+  </div>
+
+  <div
+    [ngClass]="{
+      invalid:
+        form.get('description')?.touched && form.get('description')?.invalid
+    }"
+  >
+    <mat-form-field appearance="fill">
+      <mat-label>Описание категории</mat-label>
+      <input matInput formControlName="description" />
+    </mat-form-field>
+  </div>
+
+  <div class="mb1rem">
+    <mat-checkbox formControlName="is_active">Категория активна?</mat-checkbox>
+  </div>
+
+  <button
+    mat-raised-button
+    color="primary"
+    [disabled]="form.invalid"
+    type="submit"
+  >
+    Создать
+  </button>
+</form>
