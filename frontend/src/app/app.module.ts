@@ -12,7 +12,6 @@ import ruLocale from '@angular/common/locales/ru';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { AngularYandexMapsModule } from 'angular8-yandex-maps';
 
 import { CategoryEditorComponent } from './admin/categories/category-editor/category-editor.component';
 import { CategoryCreateComponent } from './admin/categories/category-create/category-create.component';
@@ -22,7 +21,6 @@ import { MaterialModule } from './material/material.module';
 import { OrderComponent } from './main/orders/order/order.component';
 import { SelectProductsComponent } from './shared/components/select-products/select-products.component';
 import { UserProfileComponent } from './shared/users/user-profile/user-profile.component';
-import { GetAddressComponent } from './shared/components/get-address/get-address.component';
 import { AdminRegisterComponent } from './shared/users/admin-register/admin-register.component';
 import { LegalEntityRegisterComponent } from './shared/users/legal-entity-register/legal-entity-register.component';
 import { IndividualRegisterComponent } from './shared/users/individual-register/individual-register.component';
@@ -51,7 +49,6 @@ const INTERCEPTOR_PROVIDER: Provider = {
     OrderComponent,
     SelectProductsComponent,
     UserProfileComponent,
-    GetAddressComponent,
     AdminRegisterComponent,
     LegalEntityRegisterComponent,
     IndividualRegisterComponent,
@@ -67,7 +64,6 @@ const INTERCEPTOR_PROVIDER: Provider = {
     SharedModule,
     BrowserAnimationsModule,
     MaterialModule,
-    AngularYandexMapsModule,
   ],
   providers: [INTERCEPTOR_PROVIDER, { provide: LOCALE_ID, useValue: 'ru' }],
   bootstrap: [AppComponent],

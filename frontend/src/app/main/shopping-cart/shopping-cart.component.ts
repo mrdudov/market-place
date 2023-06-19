@@ -4,7 +4,6 @@ import { MatLegacyPaginator as MatPaginator } from '@angular/material/legacy-pag
 import { MatSort } from '@angular/material/sort';
 import { MatLegacyTableDataSource as MatTableDataSource } from '@angular/material/legacy-table';
 import { Router } from '@angular/router';
-import { GetAddressComponent } from 'src/app/shared/components/get-address/get-address.component';
 import { SelectProductsComponent } from 'src/app/shared/components/select-products/select-products.component';
 import {
   Order,
@@ -120,7 +119,7 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   get_distance() {
-    const distanceDialogRef = this.dialog.open(GetAddressComponent);
+    // const distanceDialogRef = this.dialog.open(GetAddressComponent);
   }
 
   select_product(product: ProductWithCount): void {

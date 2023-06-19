@@ -10,7 +10,6 @@ import { MatSort } from '@angular/material/sort';
 import { MatLegacyTableDataSource as MatTableDataSource } from '@angular/material/legacy-table';
 import { ActivatedRoute } from '@angular/router';
 import { SelectProductsComponent } from 'src/app/shared/components/select-products/select-products.component';
-import { GetAddressComponent } from 'src/app/shared/components/get-address/get-address.component';
 import {
   EditOrder,
   Order,
@@ -148,7 +147,7 @@ export class EditOrderComponent implements OnInit {
   }
 
   get_distance() {
-    const distanceDialogRef = this.dialog.open(GetAddressComponent);
+    // const distanceDialogRef = this.dialog.open(GetAddressComponent);
   }
 
   delete_product(id: number) {
